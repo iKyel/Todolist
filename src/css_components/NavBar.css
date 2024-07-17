@@ -1,0 +1,47 @@
+.navbar {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 200px;
+  background-color: #1e272e; /* Màu nền chính */
+  padding: 10px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  color: #ffffff; /* Màu chữ */
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.avatar {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+  border: 2px solid #ffffff; /* Viền trắng quanh ảnh đại diện */
+}
+
+.main-content ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.main-content li {
+  margin: 10px 0;
+  padding: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s; /* Hiệu ứng chuyển đổi mượt mà */
+  border-radius: 5px;
+}
+
+.main-content li:hover {
+  background-color: #57606f; /* Màu nền khi di chuột qua */
+  transform: scale(1.05); /* Hiệu ứng phóng to khi di chuột qua */
+}
+
+.main-content li:active {
+  background-color: #2f3640; /* Màu nền khi nhấn */
+  transform: scale(0.95); /* Hiệu ứng thu nhỏ khi nhấn */
+}
