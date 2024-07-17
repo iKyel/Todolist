@@ -1,4 +1,161 @@
-.wrapper {
-  display: flex;
-  height: 100vh; /* Chiều cao toàn màn hình */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
 }
+
+body {
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  background-color: #f0f4f8; /* Soft background color */
+}
+
+.container {
+  display: flex;
+  width: 100%;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.navbar {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: #1e272e; /* Màu nền chính */
+  padding: 10px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  color: #ffffff; /* Màu chữ */
+  width: 200px;
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.avatar {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+  border: 2px solid #ffffff; /* Viền trắng quanh ảnh đại diện */
+}
+
+.main-content ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.main-content li {
+  margin: 10px 0;
+}
+
+.nav-link {
+  display: block;
+  padding: 10px;
+  color: #ffffff; /* Màu chữ */
+  text-decoration: none; /* Bỏ gạch chân */
+  border-radius: 5px;
+  transition: background-color 0.3s, transform 0.3s; /* Hiệu ứng chuyển đổi mượt mà */
+}
+
+.nav-link:hover {
+  background-color: #57606f; /* Màu nền khi di chuột qua */
+  transform: scale(1.05); /* Hiệu ứng phóng to khi di chuột qua */
+}
+
+.nav-link:active {
+  background-color: #2f3640; /* Màu nền khi nhấn */
+  transform: scale(0.95); /* Hiệu ứng thu nhỏ khi nhấn */
+}
+
+/* HomePage.css */
+.home {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Make it take the full viewport height */
+  color: #333; /* Text color */
+  font-family: "Arial", sans-serif; /* Modern font */
+  text-align: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.home h1 {
+  font-size: 2rem; /* Responsive font size */
+  color: #4a90e2; /* Accent color for the heading */
+  margin: 0;
+  padding: 0;
+  text-transform: uppercase; /* Stylish uppercase transformation */
+  letter-spacing: 1.5px; /* Increase letter spacing for a modern look */
+}
+
+.work-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+  background-color: #f7f7f7;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  margin: 40px auto;
+}
+
+.on-going, .completed {
+  padding: 15px;
+  border-radius: 4px;
+  color: #333;
+  font-family: 'Arial', sans-serif;
+}
+
+.on-going {
+  background-color: #e3f2fd;
+  border-left: 4px solid #2196f3;
+}
+
+.completed {
+  background-color: #e8f5e9;
+  border-left: 4px solid #4caf50;
+}
+
+/* Create Work */
+/* CreateWork.css */
+.create-work-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  background-color: #f0f4f8;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.task-input {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid #007bff;
+  border-radius: 4px;
+  font-size: 16px;
+  color: #333;
+}
+
+.task-input::placeholder {
+  color: #ccc;
+}
+
+.task-input:focus {
+  outline: none;
+  border-color: #0056b3;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+/* Add more styles for other elements as needed */
