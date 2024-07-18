@@ -1,25 +1,23 @@
 import React, { useState, FC } from "react";
 import { Link } from "react-router-dom";
+import { WorkItem } from "./WorkItem";
 
-interface WorkListProps {
-  /*...*/
-}
-
-const CreateWork: FC<WorkListProps> = () => {
+const CreateWork = () => {
   const storageWork = JSON.parse(localStorage.getItem("workList") || "[]");
 
-  const [work, setWork] = useState<string>("");
-  const [workList, setWorkList] = useState<string[]>(storageWork);
+  const [workText, setWorkText] = useState<string>("");
+  const [workList, setWorkList] = useState<WorkItem[]>(storageWork);
+
   const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    setWorkList((prev) => {
-      const newWork = [...prev, work];
-      const jsonWorkList = JSON.stringify(newWork);
-      localStorage.setItem("workList", jsonWorkList);
-      return newWork;
-    });
-    setWork(""); // Clear input after adding
+    const newId = workList.length > 0 ? Math.max(...workList.map(item => item.id)) + 1 : 1;
+    const newWorkItem: WorkItem = { id: newId, text: workText, completed: false };
+    const newWorkList = [...workList, newWorkItem];
+    localStorage.setItem("workList", JSON.stringify(newWorkList));
+    setWorkList(newWorkList);
+    setWorkText(""); // Clear 
   };
+
   return (
     <>
       <form className="create-work-form" onSubmit={(e) => e.preventDefault()}>
@@ -27,13 +25,12 @@ const CreateWork: FC<WorkListProps> = () => {
           type="text"
           className="task-input"
           placeholder="Thêm công việc mới"
-          value={work}
-          onChange={(e) => setWork(e.target.value)}
+          value={workText}
+          onChange={(e) => setWorkText(e.target.value)}
         />
         <button type="submit" onClick={handleSubmit} className="submit-button">
           Thêm
         </button>
-        {/* Rest of your component */}
         <Link to="/list">
           <button className="button-list">Xem danh sách!</button>
         </Link>
