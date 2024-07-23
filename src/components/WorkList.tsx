@@ -142,8 +142,6 @@ import { observer } from "mobx-react-lite";
 const WorkList = observer(() => {
   const navigate = useNavigate();
   const workStore = useContext(WorkContext);
-  const [editingId, setEditingId] = useState<number | null>(null);
-  const [newText, setNewText] = useState<string>("");
 
   const handleComplete = (id: number) => {
     workStore.completeWork(id);
