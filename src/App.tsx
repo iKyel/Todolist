@@ -1,5 +1,8 @@
 import React from "react";
 import "./App.css";
+import { WorkContext } from "./components/WorkContext";
+import { workStore } from "./components/WorkStore";
+
 import NavBar from "./layout/NavBar";
 import HomePage from "./components/HomePage";
 import WorkList from "./components/WorkList";
@@ -10,7 +13,6 @@ import {
   createRoutesFromChildren,
   RouterProvider,
 } from "react-router-dom";
-
 
 const router = createBrowserRouter(
   createRoutesFromChildren(
@@ -28,7 +30,9 @@ const router = createBrowserRouter(
 function App() {
   return (
     <div className="container">
-      <RouterProvider router={router} />
+      <WorkContext.Provider value={workStore}>
+        <RouterProvider router={router} />
+      </WorkContext.Provider>
     </div>
   );
 }
