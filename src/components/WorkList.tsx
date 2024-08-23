@@ -21,11 +21,6 @@ const WorkList = observer(() => {
     navigate("/create", { state: { editingWorkId: workItemId } });
   };
 
-  const handleSaveEdit = async (id: string) => {
-    await workStore.editWork(id, newText);
-    setEditingId("");
-  };
-
   return (
     <>
       <div className="work-list">

@@ -17,6 +17,11 @@ const NavBar = () => {
               </Link>
             </li>
             <li>
+              <Link to="/profile" className="nav-link">
+                Tài khoản
+              </Link>
+            </li>
+            <li>
               <Link to="/list" className="nav-link">
                 Danh sách công việc
               </Link>

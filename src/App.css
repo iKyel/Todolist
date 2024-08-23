@@ -76,7 +76,6 @@ body {
 /* HomePage.css */
 .home {
   width: 100%;
-  display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh; /* Make it take the full viewport height */
@@ -97,7 +96,6 @@ body {
 }
 
 .work-list {
-  display: flex;
   flex-direction: column;
   gap: 20px;
   padding: 20px;
@@ -238,4 +236,153 @@ body {
 
 .button-create:hover {
   background-color: #218838; /* Darker shade on hover */
+}
+
+/* ------------------ User ----------------- */
+/* Register */
+
+.container-register {
+  margin-left: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Full viewport height */
+  background-color: #f0f4f8; /* Soft background color */
+}
+
+.form-res {
+  max-width: 80%;
+}
+
+.create-work-form {
+  width: 100%;
+  max-width: 400px; /* Max width for the form */
+  background-color: #ffffff; /* White background for the form */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Space between form elements */
+}
+
+.create-work-form h2 {
+  margin: 0;
+  color: #333; /* Text color */
+  font-family: "Arial", sans-serif; /* Modern font */
+  text-align: center;
+}
+
+.task-input-res {
+  width: 100%;
+  padding: 6px;
+  margin-bottom: 6px;
+  border: 2px solid #007bff;
+  border-radius: 4px;
+  font-size: 16px;
+  color: #333;
+}
+
+.task-input-res::placeholder {
+  color: #ccc;
+}
+
+.task-input-res:focus {
+  outline: none;
+  border-color: #0056b3;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+.submit-button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+  background-color: #0056b3;
+}
+
+
+/* Login.css */
+.container-login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Full viewport height */
+  background-color: #f0f4f8; /* Soft background color */
+}
+
+.login-form {
+  width: 100%;
+  max-width: 400px; /* Max width for the form */
+  background-color: #ffffff; /* White background for the form */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Space between form elements */
+}
+
+.login-form h2 {
+  margin: 0;
+  color: #333; /* Text color */
+  font-family: "Arial", sans-serif; /* Modern font */
+  text-align: center;
+}
+
+.input-login {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 2px solid #007bff;
+  border-radius: 4px;
+  font-size: 16px;
+  color: #333;
+}
+
+.input-login::placeholder {
+  color: #ccc;
+}
+
+.input-login:focus {
+  outline: none;
+  border-color: #0056b3;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+.submit-button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+  background-color: #0056b3;
+}
+
+.login-form p {
+  text-align: center;
+  color: #333;
+  font-family: "Arial", sans-serif;
+}
+
+.login-form a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.login-form a:hover {
+  text-decoration: underline;
 }
