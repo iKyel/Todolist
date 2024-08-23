@@ -8,6 +8,7 @@ export interface User {
   fullName: string;
   username: string;
   password: string;
+  workItems: string[];
 }
 
 class UserStore {
@@ -42,9 +43,9 @@ class UserStore {
         username,
         password,
       });
-      const { token } = response.data; // Extract token directly from response.data
+      const { token } = response.data; 
       localStorage.setItem("token", token);
-      return token; // Return only the token
+      return token; 
     } catch (error) {
       console.error("Error logging in user", error);
       throw error;
@@ -75,6 +76,25 @@ class UserStore {
       return response.data;
     } catch (error) {
       console.error("Error fetching current user profile", error);
+      throw error;
+    }
+  }
+
+  async getWorkItem() {
+    try {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        throw new Error("No token found");
+      }
+
+      const response = await axios.get(`${API_BASE_URL}/users/work`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      return response.data;
+    } catch (error) {
+      console.error("Error fetching work items", error);
       throw error;
     }
   }

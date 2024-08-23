@@ -19,7 +19,7 @@ const Register = () => {
     }
 
     try {
-      await userStore.registerUser({ username, fullName, password });
+      await userStore.registerUser({ username, fullName, password, workItems: [] });
       toast.success('User registered successfully');
       setUsername('');
       setFullName('');

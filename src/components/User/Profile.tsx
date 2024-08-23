@@ -1,16 +1,19 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "./UserContext";
+import { workStore } from "../WorkStore"; // Import the workStore
 
 interface UserProfile {
   data: {
     username: string;
     fullName: string;
+    workItems: string[];
   };
 }
 
 const Profile: React.FC = () => {
   const [profile, setProfile] = useState<UserProfile | null>(null);
+  const [workItemTexts, setWorkItemTexts] = useState<string[]>([]);
   const userStore = useContext(UserContext);
   const navigate = useNavigate();
 
@@ -19,6 +22,15 @@ const Profile: React.FC = () => {
       try {
         const userProfile = await userStore.getCurrentUserProfile();
         setProfile(userProfile);
+
+        // Fetch work item texts
+        const texts = await Promise.all(
+          userProfile.data.workItems.map(async (id: string) => {
+            const workItem = await workStore.fetchWorkItemById(id);
+            return workItem ? workItem.text : "Text not found";
+          })
+        );
+        setWorkItemTexts(texts);
       } catch (error) {
         console.error("Error fetching user profile:", error);
 
@@ -59,6 +71,14 @@ const Profile: React.FC = () => {
       </p>
       <p>
         <strong>Full Name:</strong> {profile.data.fullName}
+      </p>
+      <p>
+        <strong>Works:</strong>
+        <ul>
+          {workItemTexts.map((text, index) => (
+            <li key={index}>{text}</li>
+          ))}
+        </ul>
       </p>
       <button onClick={handleLogout}>Logout</button>
     </div>
