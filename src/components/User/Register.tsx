@@ -14,19 +14,19 @@ const Register = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!username.trim() || !fullName.trim() || !password.trim()) {
-      toast.error('All fields are required');
+      toast.error('Yêu cầu nhập đủ các trường!');
       return;
     }
 
     try {
-      await userStore.registerUser({ username, fullName, password, workItems: [] });
-      toast.success('User registered successfully');
+      await userStore.registerUser({ username, fullName, password });
+      toast.success('Đăng ký thành công!');
       setUsername('');
       setFullName('');
       setPassword('');
       navigate('/');
     } catch (error) {
-      toast.error('Error registering user');
+      toast.error('Đăng ký thất bại');
       console.error('Error registering user:', error);
     }
   };
