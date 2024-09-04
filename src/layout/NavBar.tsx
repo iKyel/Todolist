@@ -1,35 +1,34 @@
 import { Outlet } from "react-router-dom";
-import { Link } from "react-router-dom";
 
 const NavBar = () => {
   return (
     <>
       <div className="navbar">
         <div className="user">
-          <img className="avatar" src="./image/man.png" alt="" />
+          <img className="avatar" src="./image/man.png" alt="Avatar" />
           <span>Do Xuan Kien</span>
         </div>
         <div className="main-content">
           <ul>
             <li>
-              <Link to="/" className="nav-link">
+              <a href="/" className="nav-link">
                 Trang Chủ
-              </Link>
+              </a>
             </li>
             <li>
-              <Link to="/profile" className="nav-link">
+              <a href="/profile" className="nav-link">
                 Tài khoản
-              </Link>
+              </a>
             </li>
             <li>
-              <Link to="/list" className="nav-link">
+              <a href="/list" className="nav-link">
                 Danh sách công việc
-              </Link>
+              </a>
             </li>
             <li>
-              <Link to="/create" className="nav-link">
+              <a href="/create" className="nav-link">
                 Tạo công việc mới
-              </Link>
+              </a>
             </li>
           </ul>
         </div>

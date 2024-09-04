@@ -1,13 +1,12 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "./UserContext";
-import { workStore } from "../WorkStore"; // Import the workStore
+import { workStore } from "../WorkStore";
 
 interface UserProfile {
   data: {
     username: string;
     fullName: string;
-    workItems: string[];
   };
 }
 
@@ -22,15 +21,7 @@ const Profile: React.FC = () => {
       try {
         const userProfile = await userStore.getCurrentUserProfile();
         setProfile(userProfile);
-
-        // Fetch work item texts
-        const texts = await Promise.all(
-          userProfile.data.workItems.map(async (id: string) => {
-            const workItem = await workStore.fetchWorkItemById(id);
-            return workItem ? workItem.text : "Text not found";
-          })
-        );
-        setWorkItemTexts(texts);
+        workStore.fetchWorkList();
       } catch (error) {
         console.error("Error fetching user profile:", error);
 
@@ -64,7 +55,7 @@ const Profile: React.FC = () => {
   }
 
   return (
-    <div>
+    <div className="profile-container">
       <h2>Profile</h2>
       <p>
         <strong>Username:</strong> {profile.data.username}
@@ -75,8 +66,8 @@ const Profile: React.FC = () => {
       <p>
         <strong>Works:</strong>
         <ul>
-          {workItemTexts.map((text, index) => (
-            <li key={index}>{text}</li>
+          {workStore.workList.map((workItem) => (
+            <li key={workItem._id}>{workItem.text}</li>
           ))}
         </ul>
       </p>

@@ -20,12 +20,12 @@ const Login = () => {
 
     try {
       await userStore.loginUser(username, password);
-      toast.success('User logged in successfully');
+      toast.success('Đăng nhập thành công!');
       setUsername('');
       setPassword('');
       navigate('/profile'); 
     } catch (error) {
-      toast.error('Error logging in user');
+      toast.error('Đăng nhập lỗi!');
       console.error('Error logging in user:', error);
     }
   };

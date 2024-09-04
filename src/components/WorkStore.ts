@@ -21,34 +21,18 @@ class WorkStore {
     try {
       const token = localStorage.getItem("token");
       if (!token) {
-        throw new Error("No token found");
+        console.log("No token");
       }
-      const response = await axios.get(`${API_BASE_URL}/users/works`, {
+      const response = await axios.get(`${API_BASE_URL}/works/`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
-      this.workList = response.data.data || [];
+
+      console.log(response.data.workItems);
+      this.workList = response.data.workItems || [];
     } catch (error) {
       console.error("Error loading data", error);
-    }
-  }
-
-  async fetchWorkItemById(id: string): Promise<WorkItem | null> {
-    try {
-      const token = localStorage.getItem("token");
-      if (!token) {
-        throw new Error("No token found");
-      }
-      const response = await axios.get(`${API_BASE_URL}/works/${id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      return response.data;
-    } catch (error) {
-      console.error("Error fetching work item by ID", error);
-      return null;
     }
   }
 
@@ -58,7 +42,7 @@ class WorkStore {
       if (!token) {
         throw new Error("No token found");
       }
-      const response = await axios.post(`${API_BASE_URL}/works`, item, {
+      const response = await axios.post(`${API_BASE_URL}/works/add`, item, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -90,8 +74,20 @@ class WorkStore {
     try {
       const work = this.workList.find((item) => item._id === id);
       if (work) {
+        const token = localStorage.getItem("token");
+        if (!token) {
+          throw new Error("No token found");
+        }
         work.completed = true;
-        await axios.put(`${API_BASE_URL}/works/${id}`, { completed: true });
+        await axios.put(
+          `${API_BASE_URL}/works/${id}`,
+          { completed: true },
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
         this.fetchWorkList();
       }
     } catch (error) {
@@ -103,8 +99,20 @@ class WorkStore {
     try {
       const work = this.workList.find((item) => item._id === id);
       if (work) {
+        const token = localStorage.getItem("token");
+        if (!token) {
+          throw new Error("No token found");
+        }
         work.text = newText;
-        await axios.put(`${API_BASE_URL}/works/${id}`, { text: newText });
+        await axios.put(
+          `${API_BASE_URL}/works/${id}`,
+          { text: newText },
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
         this.fetchWorkList();
       }
     } catch (error) {
