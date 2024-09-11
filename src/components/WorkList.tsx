@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { WorkContext } from "./WorkContext";
 import { observer } from "mobx-react-lite";
@@ -6,8 +6,6 @@ import { observer } from "mobx-react-lite";
 const WorkList = observer(() => {
   const navigate = useNavigate();
   const workStore = useContext(WorkContext);
-  const [editingId, setEditingId] = useState<string>("");
-  const [newText, setNewText] = useState<string>("");
 
   const handleComplete = async (id: string) => {
     await workStore.completeWork(id);
@@ -29,22 +27,26 @@ const WorkList = observer(() => {
           <ul>
             {workStore.ongoingWork.map((workItem) => (
               <li key={workItem._id}>
-                  <>
-                    {workItem.text}
-                    <button onClick={() => handleComplete(workItem._id)}>
-                      Complete
-                    </button>
-                    <button onClick={() => handleDelete(workItem._id)}>
-                      Delete
-                    </button>
-                    <button
-                      onClick={() => {
-                        handleEdit(workItem._id)
-                      }}
-                    >
-                      Edit
-                    </button>
-                  </>
+                <>
+                  <p>{workItem.text}</p>
+                  
+                  {/* Hiển thị ảnh nếu có */}
+                  {workItem.image && (
+                    <img
+                      src={`http://localhost:3412/${workItem.image}`}
+                      alt="Work Item"
+                      style={{ width: "100px", height: "100px" }}
+                    />
+                  )}
+
+                  <button onClick={() => handleComplete(workItem._id)}>
+                    Complete
+                  </button>
+                  <button onClick={() => handleDelete(workItem._id)}>
+                    Delete
+                  </button>
+                  <button onClick={() => handleEdit(workItem._id)}>Edit</button>
+                </>
               </li>
             ))}
           </ul>
@@ -55,10 +57,18 @@ const WorkList = observer(() => {
           <ul>
             {workStore.completedWork.map((workItem) => (
               <li key={workItem._id}>
-                {workItem.text}
-                <button onClick={() => handleDelete(workItem._id)}>
-                  Delete
-                </button>
+                <p>{workItem.text}</p>
+                
+                {/* Hiển thị ảnh nếu có */}
+                {workItem.image && (
+                  <img
+                    src={`http://localhost:3412/${workItem.image}`}
+                    alt="Completed Work Item"
+                    style={{ width: "100px", height: "100px" }}
+                  />
+                )}
+                
+                <button onClick={() => handleDelete(workItem._id)}>Delete</button>
               </li>
             ))}
           </ul>
